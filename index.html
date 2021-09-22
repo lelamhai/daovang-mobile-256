@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Treasure Hunter</title>
+    <script src="./polyfills.js"></script>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas" style="width: 1280px; height: 720px; background: #231F20"></canvas>
+    <script src="Build/treasure-hunter-mobile-256.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/treasure-hunter-mobile-256.data",
+        frameworkUrl: "Build/treasure-hunter-mobile-256.framework.js",
+        codeUrl: "Build/treasure-hunter-mobile-256.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Qusdrok",
+        productName: "Treasure Hunter",
+        productVersion: "0.1",
+      })
+      .then((instance) =>
+      {
+        unityInstance = instance;
+      })
+      .catch((message) => { console.warn(message); });
+    </script>
+  </body>
+</html>

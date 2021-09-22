@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1066206567532",
+    "firebase_url": "https://treasure-hunter-unity-default-rtdb.firebaseio.com",
+    "project_id": "treasure-hunter-unity",
+    "storage_bucket": "treasure-hunter-unity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066206567532:android:e9c14c5e81696c1dcfcc49",
+        "android_client_info": {
+          "package_name": "com.qusdrok.treasurehunter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066206567532-t2744gg866fhorhg0ikoodpakhhv3csd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXY4d5aGVvh01FcBXo3bkJaBuVX4U-yBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066206567532-t2744gg866fhorhg0ikoodpakhhv3csd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
