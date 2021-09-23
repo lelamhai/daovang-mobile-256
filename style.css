@@ -1,0 +1,36 @@
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rotated { 
+    transform:rotate(90deg); 
+    -webkit-transform:rotate(90deg); 
+    -moz-transform:rotate(90deg); 
+    -o-transform:rotate(90deg); 
+  }
+
+  .landscape {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .portrait {
+    width: 100% !important;
+    height: auto !important;
+}
+
+#keyboard {
+  position: absolute;
+  z-index: -1;
+}

@@ -4,16 +4,118 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Treasure Hunter</title>
+    <style>
+      .loader {
+          animation: rotate 1s infinite;
+          height: 50px;
+          width: 50px;
+      }
+      
+      .loader:before,
+      .loader:after {
+          border-radius: 50%;
+          content: '';
+          display: block;
+          height: 20px;
+          width: 20px;
+      }
+      
+      .loader:before {
+          animation: ball1 1s infinite;
+          background-color: #cb2025;
+          box-shadow: 30px 0 0 #f8b334;
+          margin-bottom: 10px;
+      }
+      
+      .loader:after {
+          animation: ball2 1s infinite;
+          background-color: #00a096;
+          box-shadow: 30px 0 0 #97bf0d;
+      }
+      
+      @keyframes rotate {
+          0% {
+              -webkit-transform: rotate(0deg) scale(0.8);
+              -moz-transform: rotate(0deg) scale(0.8);
+          }
+          50% {
+              -webkit-transform: rotate(360deg) scale(1.2);
+              -moz-transform: rotate(360deg) scale(1.2);
+          }
+          100% {
+              -webkit-transform: rotate(720deg) scale(0.8);
+              -moz-transform: rotate(720deg) scale(0.8);
+          }
+      }
+      
+      @keyframes ball1 {
+          0% {
+              box-shadow: 30px 0 0 #f8b334;
+          }
+          50% {
+              box-shadow: 0 0 0 #f8b334;
+              margin-bottom: 0;
+              -webkit-transform: translate(15px, 15px);
+              -moz-transform: translate(15px, 15px);
+          }
+          100% {
+              box-shadow: 30px 0 0 #f8b334;
+              margin-bottom: 10px;
+          }
+      }
+      
+      @keyframes ball2 {
+          0% {
+              box-shadow: 30px 0 0 #97bf0d;
+          }
+          50% {
+              box-shadow: 0 0 0 #97bf0d;
+              margin-top: -20px;
+              -webkit-transform: translate(15px, 15px);
+              -moz-transform: translate(15px, 15px);
+          }
+          100% {
+              box-shadow: 30px 0 0 #97bf0d;
+              margin-top: 0;
+          }
+      }
+      
+      #loading {
+          position: fixed;
+          width: 100%;
+          height: 720px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          left: 0;
+      }
+      
+      .load_wrap {
+          width: 1280px;
+          height: 720px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #000000;
+      }
+  </style>
     <script src="./polyfills.js"></script>
   </head>
   <body style="text-align: center">
+    <div id="loading">
+      <div class="load_wrap">
+          <div class="loader"></div>
+      </div>
+  </div>
+
+  <input type="text" id="keyboard">
     <canvas id="unity-canvas" style="width: 1280px; height: 720px; background: #231F20"></canvas>
-    <script src="Build/treasure-hunter-mobile-256.loader.js"></script>
+    <script src="Build/Game.loader.js"></script>
     <script>
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/treasure-hunter-mobile-256.data",
-        frameworkUrl: "Build/treasure-hunter-mobile-256.framework.js",
-        codeUrl: "Build/treasure-hunter-mobile-256.wasm",
+        dataUrl: "Build/Game.data",
+        frameworkUrl: "Build/Game.framework.js",
+        codeUrl: "Build/Game.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Qusdrok",
         productName: "Treasure Hunter",
@@ -22,8 +124,21 @@
       .then((instance) =>
       {
         unityInstance = instance;
+        $('#keyboard').on('input',function(e){
+          var text = $(this).val();
+          unityInstance.SendMessage('Bridge', 'ReviceText', text);
+        });
       })
       .catch((message) => { console.warn(message); });
+    </script>
+     <script>
+      function ShowKeyboard()
+      {
+         $("#keyboard").select();
+      }
+      function StopLoading() {
+            document.getElementById("loading").remove();
+      }
     </script>
   </body>
 </html>
