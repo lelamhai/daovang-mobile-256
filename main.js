@@ -1,30 +1,31 @@
-createUnityInstance(document.querySelector("#unity-canvas"), {
-  dataUrl: "Build/Game.data",
-  frameworkUrl: "Build/Game.framework.js",
-  codeUrl: "Build/Game.wasm",
-  streamingAssetsUrl: "StreamingAssets",
-  companyName: "Qusdrok",
-  productName: "Treasure Hunter",
-  productVersion: "0.1",
-})
-  .then((instance) =>
-  {
-    unityInstance = instance;
-    $('#keyboard').on('input', function (e)
-    {
-      var text = $(this).val();
-      unityInstance.SendMessage('Bridge', 'ReviceText', text);
-    });
-  })
-  .catch((message) =>
-  {
-    console.warn(message);
-  });
 
+
+$(document).ready(() =>
+{
+
+  if (screen.width < screen.height) {
+    $("#note").css("display", "flex");
+
+  }
+  else {
+    $("#note").css("display", "none");
+  }
+  window.addEventListener("orientationchange", function (event)
+  {
+
+    if (screen.width < screen.height) {
+      $("#note").css("display", "flex");
+
+    }
+    else {
+      $("#note").css("display", "none");
+    }
+  });
+});
 
 if (($(window).width() < $(window).height())) {
 
-  $("#note").css("display", "flex");
+
   $("#unity-canvas").addClass("portrait");
 } else if (($(window).width() > $(window).height())) {
   $("#unity-canvas").addClass("landscape");
@@ -32,6 +33,14 @@ if (($(window).width() < $(window).height())) {
 
 window.addEventListener("orientationchange", function (event)
 {
+
+  if (($(window).width() < $(window).height())) {
+    $("#note").css("display", "flex");
+
+  }
+  else {
+    $("#note").css("display", "none");
+  }
   if (event.target.screen.orientation.angle === 90) {
     $("#unity-canvas").addClass("landscape");
 
